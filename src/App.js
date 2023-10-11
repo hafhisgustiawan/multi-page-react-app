@@ -1,5 +1,26 @@
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import HomePage from './pages/Home';
+import ProductsPage from './pages/Product';
+import RootLayout from './pages/Root';
+import ErrorPage from './pages/Error';
+import ProductDetailPage from './pages/ProductDetail';
+
+const router = createBrowserRouter([
+  {
+    // relative dan absolute path harus betul2 di pahami lagi nanti, ccek video 313
+    path: '/root',
+    element: <RootLayout />,
+    errorElement: <ErrorPage />,
+    children: [
+      { index: true, element: <HomePage /> }, //path : ''
+      { path: 'products', element: <ProductsPage /> },
+      { path: 'products/:productId', element: <ProductDetailPage /> },
+    ],
+  },
+]);
+
 function App() {
-  return <div></div>;
+  return <RouterProvider router={router} />;
 }
 
 export default App;
